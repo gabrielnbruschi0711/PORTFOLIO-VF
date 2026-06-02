@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabriel Bruschi — Cineasta</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Nunito:wght@200;300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy:          #0d1520;
+      --navy-mid:      #111d2e;
+      --navy-card:     #152035;
+      --navy-border:   #1e2e45;
+      --stone:         #c4b89a;
+      --stone-dim:     #8a7d68;
+      --stone-faint:   #3a3228;
+      --text-primary:  #ddd8ce;
+      --text-muted:    #7a8a9a;
+      --text-faint:    #2e3d50;
+      --white-cold:    #f0f2f4;
+      --serif:         'Cormorant Garamond', Georgia, serif;
+      --sans:          'Nunito', sans-serif;
+      --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23g)' opacity='0.055'/%3E%3C/svg%3E");
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--navy);
+      color: var(--text-primary);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+      background-image: var(--grain);
+      background-size: 250px 250px;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--navy-border); }
+
+    h1, h2, h3, h4, h5 {
+      font-family: var(--serif);
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    p { color: var(--text-muted); margin-bottom: 0; }
+    a { color: var(--stone); text-decoration: none; transition: color .25s; }
+    a:hover { color: var(--white-cold); }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: rgba(13, 21, 32, 0.88) !important;
+      border-bottom: 1px solid var(--text-faint);
+      padding: 1.2rem 0;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .navbar-brand {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: var(--text-primary) !important;
+    }
+
+    .navbar-brand sup {
+      font-family: var(--sans);
+      font-size: .6rem;
+      font-weight: 200;
+      letter-spacing: .2em;
+      color: var(--stone-dim);
+      margin-left: .3rem;
+      vertical-align: super;
+    }
+
+    .nav-link {
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--text-muted) !important;
+      padding: .3rem .8rem !important;
+      transition: color .2s;
+    }
+
+    .nav-link:hover { color: var(--stone) !important; }
+
+    .navbar-toggler {
+      border: 1px solid var(--text-faint);
+      padding: .3rem .5rem;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28122,138,154,1%29' stroke-linecap='round' stroke-width='1.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* DIVISOR */
+    .s-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    .s-divider__num {
+      font-family: var(--sans);
+      font-size: .62rem;
+      font-weight: 200;
+      letter-spacing: .3em;
+      color: var(--text-faint);
+    }
+
+    .s-divider__label {
+      font-family: var(--sans);
+      font-size: .68rem;
+      font-weight: 300;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--stone-dim);
+      white-space: nowrap;
+    }
+
+    .s-divider__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--navy-border), transparent);
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 9rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 80% 50%, rgba(21, 32, 53, 0.85) 0%, transparent 70%),
+        linear-gradient(180deg, var(--navy) 0%, #0a1220 100%);
+      z-index: 0;
+    }
+
+    /* Foto de corpo no hero */
+    .hero-photo {
+      position: absolute;
+      top: 0; right: 0;
+      height: 100%;
+      width: clamp(260px, 38vw, 580px);
+      object-fit: cover;
+      object-position: center top;
+      opacity: .45;
+      z-index: 0;
+      mask-image: linear-gradient(to left, rgba(0,0,0,.85) 0%, rgba(0,0,0,.3) 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,.85) 0%, rgba(0,0,0,.3) 60%, transparent 100%);
+    }
+
+    /* Perfuração de borda de filme */
+    .hero-film-strip {
+      position: absolute;
+      top: 0; bottom: 0; right: clamp(260px, 38vw, 580px);
+      width: 10px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--text-faint) 0, var(--text-faint) 5px,
+        transparent 5px, transparent 14px
+      );
+      opacity: .5;
+      z-index: 1;
+    }
+
+    /* Metadata de câmera sobre a foto */
+    .hero-meta {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 1.5rem;
+      font-family: var(--sans);
+      font-size: .56rem;
+      letter-spacing: .18em;
+      color: var(--text-faint);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+    }
+
+    .hero-index {
+      font-family: var(--sans);
+      font-size: .62rem;
+      font-weight: 200;
+      letter-spacing: .35em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .hero-index::after {
+      content: '';
+      display: inline-block;
+      width: 2.5rem;
+      height: 1px;
+      background-color: var(--stone-dim);
+    }
+
+    .hero-title {
+      font-size: clamp(3.2rem, 8.5vw, 7rem);
+      font-weight: 300;
+      line-height: 1.02;
+      color: var(--white-cold);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title strong {
+      font-weight: 600;
+      display: block;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--stone);
+    }
+
+    .hero-desc {
+      font-size: .9rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 400px;
+      line-height: 1.85;
+      margin-bottom: 2.8rem;
+    }
+
+    /* BOTÕES */
+    .btn-primary-custom {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background-color: var(--stone);
+      border: 1px solid var(--stone);
+      padding: .78rem 2.2rem;
+      border-radius: 0;
+      transition: background .25s, color .25s, transform .2s;
+    }
+
+    .btn-primary-custom:hover {
+      background-color: var(--stone-dim);
+      border-color: var(--stone-dim);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost-custom {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--stone-dim);
+      background-color: transparent;
+      border: 1px solid var(--navy-border);
+      padding: .75rem 2.2rem;
+      border-radius: 0;
+      transition: border-color .25s, color .25s, transform .2s;
+    }
+
+    .btn-ghost-custom:hover {
+      border-color: var(--stone-dim);
+      color: var(--stone);
+      transform: translateY(-2px);
+    }
+
+    /* PROJETOS */
+    #projetos {
+      background-color: var(--navy-mid);
+      padding: 6.5rem 0;
+      position: relative;
+    }
+
+    #projetos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-size: 250px 250px;
+      pointer-events: none;
+    }
+
+    .proj-card {
+      background-color: var(--navy-card);
+      border: 1px solid var(--navy-border) !important;
+      border-radius: 0 !important;
+      height: 100%;
+      transition: border-color .35s, transform .35s;
+      overflow: hidden;
+    }
+
+    .proj-card:hover {
+      border-color: var(--stone-dim) !important;
+      transform: translateY(-5px);
+    }
+
+    /* Contêiner de vídeo nos cards */
+    .proj-thumb {
+      height: 210px;
+      position: relative;
+      overflow: hidden;
+      background: #070e18;
+    }
+
+    .proj-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Scanlines analógicas sobre o vídeo */
+    .proj-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0,0,0,.06) 3px,
+        rgba(0,0,0,.06) 4px
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .proj-format {
+      position: absolute;
+      top: .85rem; left: .85rem;
+      font-family: var(--sans);
+      font-size: .58rem;
+      font-weight: 300;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--stone-dim);
+      background-color: rgba(13, 21, 32, .82);
+      border: 1px solid var(--text-faint);
+      padding: .22rem .65rem;
+      z-index: 3;
+    }
+
+    .proj-num {
+      position: absolute;
+      bottom: .7rem; right: .85rem;
+      font-family: var(--sans);
+      font-size: .56rem;
+      letter-spacing: .2em;
+      color: var(--text-faint);
+      z-index: 3;
+    }
+
+    /* Botão play centralizado */
+    .proj-play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(196,184,154,.15);
+      border: 1px solid rgba(196,184,154,.4);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 4;
+      transition: background .25s, opacity .25s;
+      opacity: 1;
+    }
+
+    .proj-play-btn svg {
+      width: 18px; height: 18px;
+      fill: var(--stone);
+      margin-left: 3px;
+    }
+
+    .proj-play-btn.hidden { opacity: 0; pointer-events: none; }
+
+    .proj-card .card-body {
+      padding: 1.6rem 1.7rem 1.9rem;
+    }
+
+    .proj-year {
+      font-family: var(--sans);
+      font-size: .62rem;
+      font-weight: 300;
+      letter-spacing: .22em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+
+    .proj-title {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-primary);
+      margin-bottom: .85rem;
+      line-height: 1.2;
+    }
+
+    .proj-desc {
+      font-family: var(--sans);
+      font-size: .84rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.35rem;
+    }
+
+    .badge-proj {
+      font-family: var(--sans);
+      font-size: .58rem;
+      font-weight: 300;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--stone-dim);
+      background-color: transparent !important;
+      border: 1px solid var(--navy-border);
+      padding: .28em .75em;
+      border-radius: 0;
+    }
+
+    /* SOBRE */
+    #sobre {
+      background-color: var(--navy);
+      padding: 6.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #sobre::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--text-faint) 1px, transparent 1px),
+        linear-gradient(90deg, var(--text-faint) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: .06;
+      pointer-events: none;
+    }
+
+    /* Foto de perfil na seção sobre */
+    .sobre-visual {
+      width: 100%;
+      aspect-ratio: 4/5;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--navy-border);
+    }
+
+    .sobre-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+    }
+
+    .sobre-visual::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--stone-dim), transparent 60%);
+      z-index: 1;
+    }
+
+    /* Overlay de scanlines sobre a foto */
+    .sobre-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0,0,0,.04) 3px,
+        rgba(0,0,0,.04) 4px
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .sobre-corpo {
+      padding: .5rem 0 .5rem 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sobre-nome {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+      color: var(--white-cold);
+    }
+
+    .sobre-nome strong {
+      font-weight: 600;
+      display: block;
+    }
+
+    .sobre-nome em {
+      color: var(--stone-dim);
+      font-weight: 300;
+    }
+
+    .sobre-bio {
+      font-size: .88rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 480px;
+      margin-bottom: 1rem;
+    }
+
+    .tag-list {
+      list-style: none;
+      padding: 0; margin: 1.8rem 0 2.5rem;
+      display: flex; flex-wrap: wrap; gap: .45rem;
+    }
+
+    .tag-list li {
+      font-family: var(--sans);
+      font-size: .64rem;
+      font-weight: 300;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--text-faint);
+      padding: .28rem .85rem;
+      transition: border-color .25s, color .25s;
+      cursor: default;
+    }
+
+    .tag-list li:hover {
+      border-color: var(--stone-dim);
+      color: var(--stone);
+    }
+
+    /* CONTATO */
+    #contato {
+      background-color: var(--navy-mid);
+      padding: 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contato::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 50% 110%, rgba(196,184,154,.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .contato-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contato-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    /* Foto de perfil no contato */
+    .contato-foto {
+      position: relative;
+    }
+
+    .contato-foto img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(30%) contrast(1.08);
+      border: 1px solid var(--navy-border);
+    }
+
+    .contato-foto::after {
+      content: 'G.B. — 2026';
+      position: absolute;
+      bottom: 1rem; right: 1rem;
+      font-family: var(--sans);
+      font-size: .56rem;
+      letter-spacing: .2em;
+      color: var(--text-faint);
+      z-index: 1;
+    }
+
+    /* Linha de acento */
+    .contato-foto::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--stone-dim), transparent 60%);
+      z-index: 1;
+    }
+
+    .contato-text { text-align: left; }
+
+    .contato-titulo {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white-cold);
+      margin-bottom: 1.2rem;
+    }
+
+    .contato-titulo em {
+      font-style: italic;
+      color: var(--stone-dim);
+    }
+
+    .contato-sub {
+      font-size: .88rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 320px;
+      margin: 0 0 2.5rem;
+      line-height: 1.9;
+    }
+
+    .contato-email-link {
+      font-family: var(--serif);
+      font-size: clamp(.9rem, 1.8vw, 1.2rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--stone);
+      display: inline-block;
+      border-bottom: 1px solid var(--stone-faint);
+      padding-bottom: .1rem;
+      margin-bottom: 2.8rem;
+      letter-spacing: .02em;
+      transition: color .25s, border-color .25s;
+    }
+
+    .contato-email-link:hover {
+      color: var(--white-cold);
+      border-color: var(--stone-dim);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--navy);
+      border-top: 1px solid var(--text-faint);
+      padding: 2.2rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .footer-inner p {
+      font-family: var(--sans);
+      font-size: .64rem;
+      font-weight: 200;
+      letter-spacing: .18em;
+      color: var(--text-faint);
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .footer-inner span { color: var(--stone-dim); }
+
+    /* ANIMAÇÕES */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .hero-index        { animation: fadeIn  .7s  .15s both; }
+    .hero-title        { animation: fadeUp  .9s  .3s  both; }
+    .hero-desc         { animation: fadeUp  .85s .5s  both; }
+    .hero-cta          { animation: fadeUp  .85s .65s both; }
+    .hero-photo        { animation: fadeIn  1.4s .4s  both; }
+
+    .proj-wrap:nth-child(1) .proj-card { animation: fadeUp .75s .1s  both; }
+    .proj-wrap:nth-child(2) .proj-card { animation: fadeUp .75s .22s both; }
+    .proj-wrap:nth-child(3) .proj-card { animation: fadeUp .75s .34s both; }
+
+    .sobre-visual { animation: fadeIn  1s .1s both; }
+    .sobre-corpo  { animation: fadeUp  .9s .25s both; }
+
+    .contato-wrap { animation: fadeUp .85s .1s both; }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 767.98px) {
+      .hero-photo { width: 100%; opacity: .2; }
+      .hero-film-strip { display: none; }
+      .sobre-corpo { padding: 1.5rem 0 0; }
+      .footer-inner { justify-content: center; text-align: center; }
+      .contato-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contato-foto { max-width: 260px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-md">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        Gabriel Bruschi<sup>Cineasta</sup>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav gap-2">
+          <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- HERO — foto de corpo inteiro -->
+  <section id="hero">
+
+    <!-- Foto de corpo: IMG_8340.jpeg -->
+    <img src="IMG_8340.jpeg" alt="Gabriel Bruschi" class="hero-photo" />
+    <div class="hero-film-strip"></div>
+    <div class="hero-meta">f/1.4  —  1/50s  —  ISO 800</div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-index">001 &nbsp; Portfolio 2026</div>
+
+        <h1 class="hero-title">
+          <em>Cinema</em>
+          <strong>como<br>pensamento.</strong>
+        </h1>
+
+        <p class="hero-desc">
+          Imagens que interrogam o humano — com a frieza necessária
+          para que a verdade apareça entre os planos.
+        </p>
+
+        <div class="hero-cta d-flex flex-wrap gap-3">
+          <a href="#projetos" class="btn-primary-custom">Ver projetos</a>
+          <a href="#contato"  class="btn-ghost-custom">Contato</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROJETOS -->
+  <section id="projetos">
+    <div class="container position-relative">
+
+      <div class="s-divider">
+        <span class="s-divider__num">02</span>
+        <span class="s-divider__label">Projetos</span>
+        <div class="s-divider__line"></div>
+        <span class="s-divider__num">2026</span>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Projeto 1: Pra Quê -->
+        <div class="col-sm-6 col-lg-4 proj-wrap">
+          <div class="proj-card card border-0">
+            <div class="proj-thumb">
+              <span class="proj-format">Curta-metragem</span>
+              <span class="proj-num">001 / 003</span>
+              <video id="vid-praque" src="Pra_Que.mp4" preload="metadata" loop playsinline></video>
+              <div class="proj-play-btn" onclick="toggleVideo('vid-praque', this)">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="proj-year">2026</p>
+              <h3 class="proj-title">Pra Quê</h3>
+              <p class="proj-desc">
+                Um jovem em estado depressivo questiona suas escolhas
+                de vida e se ela vale a pena.
+                Uma pequena obra semi-autobiográfica sobre o peso de existir.
+              </p>
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge badge-proj">Direção</span>
+                <span class="badge badge-proj">Roteiro</span>
+                <span class="badge badge-proj">Drama</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projeto 2: Vilarejo -->
+        <div class="col-sm-6 col-lg-4 proj-wrap">
+          <div class="proj-card card border-0">
+            <div class="proj-thumb">
+              <span class="proj-format">Videoclipe</span>
+              <span class="proj-num">002 / 003</span>
+              <video id="vid-vilarejo" src="Vilarejo.mp4" preload="metadata" loop playsinline></video>
+              <div class="proj-play-btn" onclick="toggleVideo('vid-vilarejo', this)">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="proj-year">2026</p>
+              <h3 class="proj-title">Vilarejo</h3>
+              <p class="proj-desc">
+                Reinterpretação visual da música de Marisa Monte.
+                Uma meditação sobre o tempo e a memória.
+              </p>
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge badge-proj">Roteiro</span>
+                <span class="badge badge-proj">Produção</span>
+                <span class="badge badge-proj">Still</span>
+                <span class="badge badge-proj">Videoclipe</span>
+                <span class="badge badge-proj">Marisa Monte</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projeto 3: Mapa das Américas -->
+        <div class="col-sm-6 col-lg-4 proj-wrap">
+          <div class="proj-card card border-0">
+            <div class="proj-thumb">
+              <span class="proj-format">Videoarte</span>
+              <span class="proj-num">003 / 003</span>
+              <video id="vid-mapa" src="Mapa_Americas.mp4" preload="metadata" loop playsinline></video>
+              <div class="proj-play-btn" onclick="toggleVideo('vid-mapa', this)">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="proj-year">2026</p>
+              <h3 class="proj-title">Mapa da(s) América(s)</h3>
+              <p class="proj-desc">
+                Exposição crítica do Soft Power estadunidense
+                nas Américas.
+              </p>
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge badge-proj">Videoarte</span>
+                <span class="badge badge-proj">Ensaio</span>
+                <span class="badge badge-proj">Política</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SOBRE MIM -->
+  <section id="sobre">
+    <div class="container">
+
+      <div class="s-divider">
+        <span class="s-divider__num">03</span>
+        <span class="s-divider__label">Sobre</span>
+        <div class="s-divider__line"></div>
+      </div>
+
+      <div class="row align-items-center g-5">
+
+        <div class="col-md-4 col-lg-3">
+          <div class="sobre-visual">
+            <img src="IMG_sobre.jpg" alt="Gabriel Bruschi — Cineasta" />
+          </div>
+        </div>
+
+        <div class="col-md-8 col-lg-9">
+          <div class="sobre-corpo">
+            <h2 class="sobre-nome">
+              <em>Gabriel</em>
+              <strong>Bruschi</strong>
+            </h2>
+
+            <p class="sobre-bio">
+              Formado em 2025 pelo Colégio Dante Alighieri, aprovado em Cinema
+              tanto na ESPM quanto na FAAP. Acredita no cinema como instrumento
+              filosófico — um meio capaz de expor quem realmente somos e nosso mundo, sem medo de olhar para o abismo e o pior de nós, para devolver ao
+              espectador perguntas que ele não sabe responder, que nem somos capazes de responder, mas que não devemos ignorar, pois são questões fundamentais da condição humana.
+            </p>
+
+            <p class="sobre-bio" style="margin-top:.8rem;">
+              Interessa-se profundamente por filosofia, psicologia, sociologia e
+              história, além de outras artes: a literatura, a pintura e a música.
+            </p>
+
+            <ul class="tag-list">
+              <li>Filosofia</li>
+              <li>Psicologia</li>
+              <li>Sociologia</li>
+              <li>História</li>
+              <li>Literatura</li>
+              <li>Pintura</li>
+              <li>Cinema analógico</li>
+            </ul>
+
+            <a href="#contato" class="btn-ghost-custom">Vamos conversar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTATO — foto de perfil ao lado do texto -->
+  <section id="contato">
+    <div class="container">
+
+      <div class="contato-wrap">
+
+        <div class="s-divider" style="margin-bottom:3rem;">
+          <span class="s-divider__num">04</span>
+          <span class="s-divider__label">Contato</span>
+          <div class="s-divider__line"></div>
+        </div>
+
+        <div class="contato-layout">
+
+          <!-- Foto de perfil no contato: IMG_8345.jpeg -->
+          <div class="contato-foto">
+            <img src="IMG_8345.jpeg" alt="Gabriel Bruschi" />
+          </div>
+
+          <!-- Texto de contato -->
+          <div class="contato-text">
+            <h2 class="contato-titulo">
+              Vamos<br>fazer<br><em>algo.</em>
+            </h2>
+
+            <p class="contato-sub">
+              Projetos, colaborações, conversas sobre cinema, filosofia
+              ou qualquer coisa que valha a pena dizer.
+            </p>
+
+            <a href="mailto:gabrielnbruschi@gmail.com" class="contato-email-link d-block">
+              gabrielnbruschi@gmail.com
+            </a>
+
+            <a href="mailto:gabrielnbruschi@gmail.com" class="btn-primary-custom">
+              Enviar mensagem
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2026 <span>Gabriel Bruschi</span></p>
+        <p>Cineasta em formação &nbsp;—&nbsp; São Paulo, BR</p>
+        <p>ESPM &nbsp;·&nbsp; FAAP &nbsp;·&nbsp; Dante Alighieri</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function toggleVideo(videoId, btn) {
+      const video = document.getElementById(videoId);
+      if (video.paused) {
+        // Pausa todos os outros vídeos primeiro
+        document.querySelectorAll('.proj-thumb video').forEach(v => {
+          if (v.id !== videoId) {
+            v.pause();
+            v.closest('.proj-thumb').querySelector('.proj-play-btn').classList.remove('hidden');
+          }
+        });
+        video.play();
+        btn.classList.add('hidden');
+      } else {
+        video.pause();
+        btn.classList.remove('hidden');
+      }
+    }
+  </script>
+
+</body>
+</html>
